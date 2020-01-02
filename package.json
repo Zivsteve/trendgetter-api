@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "prod": "node public/server.js",
+    "start": "node public/server.js",
     "build": "tsc -p ."
   },
   "author": "",
