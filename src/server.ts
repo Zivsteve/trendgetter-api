@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
-app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 app.get('/', (req, res) => res.send(renderIndex()));
 
