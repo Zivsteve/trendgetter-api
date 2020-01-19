@@ -37,13 +37,10 @@ app.listen(port, () => console.log(`API running on port ${port}!`));
  */
 function renderIndex() {
   const file = fs.readFileSync(path.resolve(__dirname, '../README.md'), 'utf8');
+  const style = fs.readFileSync(path.resolve(__dirname, './index.css'), 'utf8');
   const head = `
     <head>
-      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-      <style>
-        body { padding: 10%; font-family: 'Roboto', sans-serif; } 
-        blockquote { padding: 0 1em; border-left: 0.25em solid #dfe2e5; margin: unset; }
-      </style>
+      <style>${style}</style>
     </head>
   `;
   return head + marked(`${file}`);

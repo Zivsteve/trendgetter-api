@@ -122,7 +122,7 @@ An API for getting trending content from various sites: YouTube, Google, Twitter
 Help me improve this project! Any amount is much appreciated :)
 
 <a href="https://www.buymeacoffee.com/YkncqEs" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;">
+  <img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" width="217" height="51">
 </a>
 
 ---
