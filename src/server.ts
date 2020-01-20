@@ -37,7 +37,7 @@ app.listen(port, () => console.log(`API running on port ${port}!`));
  */
 function renderIndex() {
   const file = fs.readFileSync(path.resolve(__dirname, '../README.md'), 'utf8');
-  const style = fs.readFileSync(path.resolve(__dirname, './index.css'), 'utf8');
+  const style = fs.readFileSync(path.resolve(__dirname, '../index.css'), 'utf8');
   const head = `
     <head>
       <style>${style}</style>

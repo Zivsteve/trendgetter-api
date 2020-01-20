@@ -2,14 +2,13 @@
   "name": "trendgetter-api",
   "version": "1.0.0",
   "description": "The official Trendgetter API source-code",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
     "start": "node public/server.js",
     "build": "tsc -p ."
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "compression": "^1.7.4",
@@ -17,7 +16,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "marked": "^0.8.0",
-    "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8"
   },
