@@ -86,7 +86,7 @@ An API for getting trending content from various sites: YouTube, Google, Twitter
 <details>
   <summary>GitHub</summary>
 
-> GitHub doesn't have an API, but it has a trending page which we can parse:
+> GitHub doesn't have an official API, but it has a trending page which we can parse:
 > https://github.com/trending
 
 > We can also get trending developers:
@@ -103,17 +103,36 @@ An API for getting trending content from various sites: YouTube, Google, Twitter
 <details>
   <summary>Snapchat</summary>
 
-> Snapchat doesn't have an API or a dedicated trending page, but they have a stories page where they showcase popular & celebrity stories:
-> https://story.snapchat.com/
+> Snapchat doesn't have an official API or a dedicated trending page, but they have a stories page and a map page:
+> https://story.snapchat.com/ > https://map.snapchat.com/
 
-> In addition, we can get the data of any story by inserting it in the following URL:
-> https://storysharing.snapchat.com/v1/fetch/ **username**
+> The story page used to display popular and celebrity stories but now displayed random promotional ones.
+> Older versions of this API used this as "trending" content because the map version wasn't readable.
+> When Snapchat updated their site, they allowed the map to be read. The map showcases playlists of trending events.
+
+> URL to get the trending playlists:
+> https://ms.sc-jpl.com/web/getSearchCards  
+> URL to get playlist's content:
+> https://ms.sc-jpl.com/web/getPoiPlaylist
 
 </details>
 
 `/snapchat`
 
-`/snapchat/:username`
+`/snapchat/:id`
+
+---
+
+<details>
+  <summary>TikTok</summary>
+
+> TikTok doesn't have an official API but it has a trending page (https://www.tiktok.com/trending) although the content isn't fixed, every time you refresh, it changes.
+> One thing that doesn't change are the trending hashtags:
+> https://m.tiktok.com/node/share/discover
+
+</details>
+
+`/tiktok`
 
 ---
 

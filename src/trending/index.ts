@@ -6,6 +6,7 @@ import TwitterTrending from './sites/twitter-trending';
 import RedditTrending from './sites/reddit-trending';
 import GithubTrending from './sites/github-trending';
 import SnapchatTrending from './sites/snapchat-trending';
+import TiktokTrending from './sites/tiktok-trending';
 
 export declare type RequestOptions = UriOptions & RequestPromiseOptions;
 
@@ -27,4 +28,7 @@ const twitter = new TwitterTrending();
 /** Instance */
 const youtube = new YoutubeTrending();
 
-export { github, google, reddit, snapchat, twitter, youtube };
+/** Instance */
+const tiktok = new TiktokTrending();
+
+export { github, google, reddit, snapchat, twitter, youtube, tiktok };

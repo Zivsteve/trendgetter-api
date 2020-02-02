@@ -2,56 +2,79 @@ import request from 'request-promise-native';
 import { RequestOptions } from '..';
 
 /**
- * Fixes expired certification. This should be removed if Snapchat fixes their certificate.
- */
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
-/**
  * Snapchat Trending
  */
 class SnapchatTrending {
   /**
-   * 
-   * @param callback 
+   *
+   * @param callback
    */
-  public async getAll(callback?: (value: any[]) => any) {
-    const options: RequestOptions = {
-      method: 'GET',
-      gzip: true,
-      uri: process.env.SNAPCHAT_API_STORIES_URL,
-    };
-    const body = await request(options).catch(err => console.error(err));
-    const value = this._parseBody(body);
+  public async getAll(callback?: (value: any) => any) {
+    let value = null;
+    try {
+      const options: RequestOptions = {
+        method: 'POST',
+        gzip: true,
+        json: true,
+        uri: process.env.SNAPCHAT_API_STORIES_URL,
+        body: {
+          mapLocation: { lat: 50, lng: -100 },
+          zoom: 2,
+          query: '',
+          viewport: {
+            geoBottomLeft: { lat: -30, lon: -200 },
+            geoTopRight: { lat: 100, lon: 0 },
+          },
+        },
+      };
+      const body = await request(options);
+      const items = body.searchCards.sections[2].rows;
+      for (let i = 0; i < items.length; i++) {
+        items[i] = items[i].poiRow;
+        items[i].title = items[i].titleFmt;
+        items[i].subtitle = items[i].subtitleFmt;
+        delete items[i].titleFmt;
+        delete items[i].subtitleFmt;
+        delete items[i].manifest;
+      }
+      value = items;
+    } catch (err) {
+      console.log(err);
+    }
     if (callback) {
       callback(value);
     }
+    return value;
   }
 
   /**
-   * 
-   * @param username 
-   * @param callback 
+   *
+   * @param id
+   * @param callback
    */
-  public async getForUser(username: string, callback?: (value: any[]) => any) {
-    const options: RequestOptions = {
-      method: 'GET',
-      gzip: true,
-      uri: process.env.SNAPCHAT_API_STORY_URL.replace('[:username]', username),
-    };
-    const body = await request(options).catch(err => console.error(err));
-    const value = JSON.parse(body).story;
-    value.snaps = value.snaps.filter((snap: any) => snap.media.type.startsWith('VIDEO'));
+  public async getPlaylist(id: string, callback?: (value: any[]) => any) {
+    let value;
+    try {
+      const options: RequestOptions = {
+        method: 'POST',
+        gzip: true,
+        json: true,
+        uri: process.env.SNAPCHAT_API_PLAYLIST_URL,
+        body: {
+          id: id,
+          allowLatestTilesetFallback: true,
+        },
+      };
+      const body = await request(options);
+      value = body.manifest;
+      value.title = value.title.fallback.trim();
+    } catch (err) {
+      console.log(err);
+    }
     if (callback) {
       callback(value);
     }
-  }
-
-  /**
-   * 
-   * @param body 
-   */
-  private _parseBody(body: string) {
-    return (<any[]>JSON.parse(body).Cards).filter((c: any) => c.isPopular);
+    return value;
   }
 }
 

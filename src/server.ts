@@ -5,7 +5,7 @@ import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
 import marked from 'marked';
-import { google, youtube, twitter, reddit, github, snapchat } from './trending';
+import { google, youtube, twitter, reddit, github, snapchat, tiktok } from './trending';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -28,7 +28,9 @@ app.get('/github', (req, res) => github.getAll(req.query.lang, req.query.since, 
 app.get('/github/developers', (req, res) => github.getDevelopers(req.query.lang, req.query.since, r => res.send(r)));
 
 app.get('/snapchat', (req, res) => snapchat.getAll(r => res.send(r)));
-app.get('/snapchat/:username', (req, res) => snapchat.getForUser(req.params.username, r => res.send(r)));
+app.get('/snapchat/:id', (req, res) => snapchat.getPlaylist(req.params.id, r => res.send(r)));
+
+app.get('/tiktok', (req, res) => tiktok.getAll(r => res.send(r)));
 
 app.listen(port, () => console.log(`API running on port ${port}!`));
 
