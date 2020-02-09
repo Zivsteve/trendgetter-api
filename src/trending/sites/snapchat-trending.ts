@@ -28,7 +28,7 @@ class SnapchatTrending {
         },
       };
       const body = await request(options);
-      const items = body.searchCards.sections[2].rows;
+      const items = body.searchCards.sections[2].rows.splice(0, 20);
       for (let i = 0; i < items.length; i++) {
         items[i] = items[i].poiRow;
         items[i].title = items[i].titleFmt;
