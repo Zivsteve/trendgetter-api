@@ -14,7 +14,7 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "marked": "^0.8.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8"
